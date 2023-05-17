@@ -136,6 +136,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         var timeNow = new Date().getTime();
         var te = new Date(newMessageRecieved.createdAt);
         console.log("delay is: ", timeNow - te.getTime());
+        console.log(timeNow);
         // prompt("delay is: " ,timeNow - te.getTime());
         
 

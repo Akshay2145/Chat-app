@@ -40,6 +40,8 @@ if (process.env.NODE_ENV === "production") {
 // --------------------------deployment------------------------------
 
 // Error Handling middlewares
+
+const arr = [];
 app.use(notFound);
 app.use(errorHandler);
 
@@ -74,7 +76,7 @@ io.on("connection", (socket) => {
 
   socket.on("new message", (newMessageRecieved) => {
     var timeNow = new Date();
-      console.log(timeNow.getTime());
+      console.log("Recieved at: " , timeNow.getTime());
     var chat = newMessageRecieved.chat;
 
     if (!chat.users) return console.log("chat.users not defined");
@@ -86,7 +88,14 @@ io.on("connection", (socket) => {
       console.log("Message Recieved");
       
       var te = new Date(newMessageRecieved.createdAt);
-      console.log(te.getTime());
+      // console.log(newMessageRecieved);
+      console.log("Sent at: " , te.getTime());
+      arr.push(timeNow.getTime() - te.getTime());
+      const sum = arr.reduce((a, b) => a + b, 0);
+
+      console.log("Average delay is: " , sum/arr.length);
+      // for(i = 0 ; i< arr.length ; i++){
+
       console.log("delay is: " ,timeNow.getTime() - te.getTime());
       // prompt("delay is: " ,timeNow.getTime() - te.getTime());
       console.log(newMessageRecieved.createdAt);
