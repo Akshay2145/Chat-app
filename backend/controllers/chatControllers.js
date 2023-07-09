@@ -91,13 +91,16 @@ const createGroupChat = asyncHandler(async (req, res) => {
   }
 
   users.push(req.user);
+//make user with smallest id as admin
+  users.sort((a, b) => a._id - b._id)
 
+  
   try {
     const groupChat = await Chat.create({
       chatName: req.body.name,
       users: users,
       isGroupChat: true,
-      groupAdmin: req.user,
+      groupAdmin: users[0],
     });
 
     const fullGroupChat = await Chat.findOne({ _id: groupChat._id })
@@ -189,6 +192,7 @@ const addToGroup = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Chat Not Found");
   } else {
+    console.log(req.body)
     res.json(added);
   }
 });
