@@ -38,9 +38,27 @@ export const isSameUser = (messages, m, i) => {
   return (i > 0 && messages[i - 1].sender._id === m.sender._id);
 };
 
+// export const getSender = (loggedUser, users) => {
+//   return users[0]._id === loggedUser._id ? users[1].name : users[0].name;
+// };
 export const getSender = (loggedUser, users) => {
-  return users[0]._id === loggedUser._id ? users[1].name : users[0].name;
+  if (!loggedUser || !users || users.length < 2) {
+    // Handle the case where loggedUser, users, or users array is undefined or insufficient.
+    // You might return a default value or throw an error as needed.
+    return "Sender Not Found";
+  }
+
+  const [firstUser, secondUser] = users;
+
+  if (!firstUser || !secondUser) {
+    // Handle the case where firstUser or secondUser is undefined.
+    // You might return a default value or throw an error as needed.
+    return "Sender Not Found";
+  }
+
+  return firstUser._id === loggedUser._id ? secondUser.name : firstUser.name;
 };
+
 
 export const getSenderFull = (loggedUser, users) => {
   return (users[0]._id === loggedUser._id ? users[1] : users[0]);

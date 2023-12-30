@@ -44,6 +44,7 @@ const accessChat = asyncHandler(async (req, res) => {
         "-password"
       );
       res.status(200).json(FullChat);
+      console.log(res)
     } catch (error) {
       res.status(400);
       throw new Error(error.message);
@@ -66,6 +67,7 @@ const fetchChats = asyncHandler(async (req, res) => {
           path: "latestMessage.sender",
           select: "name pic email",
         });
+        // console.log(results);
         res.status(200).send(results);
       });
   } catch (error) {
@@ -147,6 +149,7 @@ const removeFromGroup = asyncHandler(async (req, res) => {
   const { chatId, userId } = req.body;
 
   // check if the requester is admin
+  console.log(req.body)
 
   const removed = await Chat.findByIdAndUpdate(
     chatId,

@@ -12,6 +12,7 @@ const allMessages = asyncHandler(async (req, res) => {
       .populate("sender", "name pic email")
       .populate("chat");
     res.json(messages);
+    // console.log(messages.chat.groupAdmin);
   } catch (error) {
     res.status(400);
     throw new Error(error.message);
