@@ -89,21 +89,21 @@ io.on("connection", (socket) => {
     
     console.log(newMessageRecieved);
 
-    arr.forEach((keySize) => {
-      var timeNow = new Date();
-      console.log(`\n\nfor key size: ${parseInt(keySize)}`.blue.bold);
-      console.log("time before encryption: " , timeNow.getTime());
-      newMessageRecieved.content = AesCtr.encrypt(newMessageRecieved.content , 'akshay' , parseInt(keySize));
-      console.log("time after encryption: " , new Date().getTime());
-      console.log("encryption delay is: " , new Date().getTime() - timeNow.getTime());
+    // arr.forEach((keySize) => {
+    //   var timeNow = new Date();
+    //   console.log(`\n\nfor key size: ${parseInt(keySize)}`.blue.bold);
+    //   console.log("time before encryption: " , timeNow.getTime());
+    //   newMessageRecieved.content = AesCtr.encrypt(newMessageRecieved.content , 'akshay' , parseInt(keySize));
+    //   console.log("time after encryption: " , new Date().getTime());
+    //   console.log("encryption delay is: " , new Date().getTime() - timeNow.getTime());
 
-      var timeNow2 = new Date();
-      console.log("time before decryption: " , timeNow2.getTime());
-      newMessageRecieved.content = AesCtr.decrypt(newMessageRecieved.content , 'akshay' , parseInt(keySize));
-      console.log("time after decryption: " , new Date().getTime());
-      console.log("decryption delay is: " , new Date().getTime() - timeNow2.getTime());
+    //   var timeNow2 = new Date();
+    //   console.log("time before decryption: " , timeNow2.getTime());
+    //   newMessageRecieved.content = AesCtr.decrypt(newMessageRecieved.content , 'akshay' , parseInt(keySize));
+    //   console.log("time after decryption: " , new Date().getTime());
+    //   console.log("decryption delay is: " , new Date().getTime() - timeNow2.getTime());
 
-    });
+    // });
 
     var chat = newMessageRecieved.chat;
 
